@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>594</width>
+    <height>463</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,18 +18,22 @@
     <widget class="QWidget" name="widget_8" native="true">
      <layout class="QHBoxLayout" name="horizontalLayout_7">
       <item>
-       <widget class="QTextBrowser" name="log"/>
+       <widget class="QPlainTextEdit" name="recvData">
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
       </item>
       <item>
        <widget class="QWidget" name="widget_6" native="true">
-        <layout class="QVBoxLayout" name="verticalLayout">
+        <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
           <widget class="QWidget" name="widget_2" native="true">
            <layout class="QHBoxLayout" name="horizontalLayout_3">
             <item>
              <widget class="QLabel" name="label">
               <property name="text">
-               <string>串口：</string>
+               <string>串口 ：</string>
               </property>
              </widget>
             </item>
@@ -50,7 +54,23 @@
              </widget>
             </item>
             <item>
-             <widget class="QComboBox" name="dataBits"/>
+             <widget class="QComboBox" name="dataBits">
+              <item>
+               <property name="text">
+                <string>8</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>7</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>6</string>
+               </property>
+              </item>
+             </widget>
             </item>
            </layout>
           </widget>
@@ -66,7 +86,33 @@
              </widget>
             </item>
             <item>
-             <widget class="QComboBox" name="baudRate"/>
+             <widget class="QComboBox" name="baudRate">
+              <item>
+               <property name="text">
+                <string>38400</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>28800</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>19200</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>9600</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>4800</string>
+               </property>
+              </item>
+             </widget>
             </item>
            </layout>
           </widget>
@@ -82,7 +128,23 @@
              </widget>
             </item>
             <item>
-             <widget class="QComboBox" name="parityBits"/>
+             <widget class="QComboBox" name="parityBits">
+              <item>
+               <property name="text">
+                <string>无</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>偶校验</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>奇校验</string>
+               </property>
+              </item>
+             </widget>
             </item>
            </layout>
           </widget>
@@ -98,16 +160,63 @@
              </widget>
             </item>
             <item>
-             <widget class="QComboBox" name="stopBits"/>
+             <widget class="QComboBox" name="stopBits">
+              <item>
+               <property name="text">
+                <string>1</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>2</string>
+               </property>
+              </item>
+             </widget>
             </item>
            </layout>
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="openPort">
-           <property name="text">
-            <string>打开串口</string>
+          <widget class="QWidget" name="widget_7" native="true">
+           <layout class="QHBoxLayout" name="horizontalLayout_6">
+            <item>
+             <widget class="QCheckBox" name="openPort">
+              <property name="text">
+               <string>打开串口</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnClear">
+              <property name="text">
+               <string>清空</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="groupBox_2">
+           <property name="title">
+            <string/>
            </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_10">
+            <item>
+             <widget class="QRadioButton" name="hexRecv">
+              <property name="text">
+               <string>十六进制</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="charRecv">
+              <property name="text">
+               <string>字符</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </widget>
          </item>
         </layout>
@@ -130,19 +239,38 @@
       </item>
       <item>
        <widget class="QWidget" name="widget_10" native="true">
-        <layout class="QVBoxLayout" name="verticalLayout_2">
+        <layout class="QVBoxLayout" name="verticalLayout">
          <item>
-          <widget class="QPushButton" name="btnClear">
+          <widget class="QPushButton" name="btnSend">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
-            <string>清空</string>
+            <string>发送</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="btnSend">
-           <property name="text">
-            <string>发送</string>
+          <widget class="QGroupBox" name="groupBox">
+           <property name="title">
+            <string/>
            </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_9">
+            <item>
+             <widget class="QRadioButton" name="hexSend">
+              <property name="text">
+               <string>十六进制</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="charSend">
+              <property name="text">
+               <string>字符</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </widget>
          </item>
         </layout>
