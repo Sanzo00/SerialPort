@@ -1,6 +1,5 @@
 #include "widget.h"
 #include "ui_widget.h"
-#include <QByteArray>
 #include <QDebug>
 QByteArray dataText;
 Widget::Widget(QWidget *parent)
@@ -70,7 +69,6 @@ void Widget::findPorts()
 bool Widget::initSerialPort()
 {
     int bits;
-
     // port
     serialPort->setPortName(ui->portName->currentText());
     if (serialPort->open(QIODevice::ReadWrite) == false) {
@@ -98,7 +96,6 @@ bool Widget::initSerialPort()
     if (str == "无") serialPort->setParity(QSerialPort::NoParity);
     else if (str == "偶校验") serialPort->setParity(QSerialPort::EvenParity);
     else if (str == "奇校验") serialPort->setParity(QSerialPort::OddParity);
-
     return true;
 }
 
@@ -108,15 +105,9 @@ void Widget::flushText()
     ui->recvData->clear();
     qDebug() << QString(dataText);
     if (ui->hexRecv->isChecked()) { // show hex
-//        QList<std::string str>;
-//        char c[4];
-//        for (int i = 0; i < list)
         QString str = dataText.toHex(' ').toUpper();
         qDebug() << "hex: " << str;
         ui->recvData->appendPlainText(str);
-
-
-
     }else { // show char
         ui->recvData->appendPlainText(QString(dataText));
     }
@@ -138,6 +129,4 @@ void Widget::recvMsg()
     if (msg.isEmpty()) return;
     dataText.append(msg);
     flushText();
-    //do something
-//    ui->log->insertPlainText(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss") + " [recieve] " + msg.toHex().data() + "\n");
 }

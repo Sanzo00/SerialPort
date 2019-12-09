@@ -1,7 +1,9 @@
 #ifndef WIDGET_H
 #define WIDGET_H
 
+
 #include <QWidget>
+#include <QByteArray>
 #include <QSerialPort>
 #include <QSerialPortInfo>
 #include <QList>
