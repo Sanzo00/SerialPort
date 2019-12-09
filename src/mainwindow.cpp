@@ -1,12 +1,20 @@
-#include "widget.h"
-#include "ui_widget.h"
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
 #include <QDebug>
+#include <QDesktopServices>
 QByteArray dataText;
-Widget::Widget(QWidget *parent)
-    : QWidget(parent)
-    , ui(new Ui::Widget)
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent)
+    , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    connect(ui->github, &QAction::triggered, [=](){
+        QDesktopServices::openUrl(QUrl("https://github.com/Sanzona"));
+    });
+    connect(ui->readMe, &QAction::triggered, [=](){
+        QDesktopServices::openUrl(QUrl("https://github.com/Sanzona/SerialPort/blob/master/README.md"));
+    });
+
     ui->charRecv->setChecked(true);
     ui->charSend->setChecked(true);
 
@@ -40,18 +48,17 @@ Widget::Widget(QWidget *parent)
     });
 
     // hex <-> char
-    connect(ui->hexRecv, &QRadioButton::toggled, [=](bool checked){
+    connect(ui->hexRecv, &QRadioButton::toggled, [=](){
         flushText();
     });
-
 }
 
-Widget::~Widget()
+MainWindow::~MainWindow()
 {
     delete ui;
 }
 
-void Widget::findPorts()
+void MainWindow::findPorts()
 {
     QList<QSerialPortInfo> ports = QSerialPortInfo::availablePorts();
     int cnt = 0;
@@ -66,7 +73,7 @@ void Widget::findPorts()
     return;
 }
 
-bool Widget::initSerialPort()
+bool MainWindow::initSerialPort()
 {
     int bits;
     // port
@@ -100,7 +107,7 @@ bool Widget::initSerialPort()
 }
 
 // data <-> char
-void Widget::flushText()
+void MainWindow::flushText()
 {
     ui->recvData->clear();
     qDebug() << QString(dataText);
@@ -113,7 +120,7 @@ void Widget::flushText()
     }
 }
 
-void Widget::sendMsg(const QString &msg)
+void MainWindow::sendMsg(const QString &msg)
 {
     if (ui->charSend->isChecked()) { // send hex
         serialPort->write(msg.toLatin1());
@@ -122,7 +129,7 @@ void Widget::sendMsg(const QString &msg)
     }
 }
 
-void Widget::recvMsg()
+void MainWindow::recvMsg()
 {
     QByteArray msg = this->serialPort->readAll();
     qDebug() << "msg: " <<  msg;

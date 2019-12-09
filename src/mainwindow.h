@@ -1,8 +1,7 @@
-#ifndef WIDGET_H
-#define WIDGET_H
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
 
-
-#include <QWidget>
+#include <QMainWindow>
 #include <QByteArray>
 #include <QSerialPort>
 #include <QSerialPortInfo>
@@ -10,16 +9,16 @@
 #include <QMessageBox>
 #include <QDateTime>
 QT_BEGIN_NAMESPACE
-namespace Ui { class Widget; }
+namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
-class Widget : public QWidget
+class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    Widget(QWidget *parent = nullptr);
-    ~Widget();
+    MainWindow(QWidget *parent = nullptr);
+    ~MainWindow();
 
 protected:
     void findPorts();
@@ -27,12 +26,11 @@ protected:
     void sendMsg(const QString &msg);
     void flushText();
 
-
 public slots:
     void recvMsg();
 
 private:
-    Ui::Widget *ui;
+    Ui::MainWindow *ui;
     QSerialPort *serialPort;
 };
-#endif // WIDGET_H
+#endif // MAINWINDOW_H
