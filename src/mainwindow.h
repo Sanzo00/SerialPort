@@ -33,5 +33,6 @@ public slots:
 private:
     Ui::MainWindow *ui;
     QSerialPort *serialPort;
+    QString dataProcess(QString);
 };
 #endif // MAINWINDOW_H

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>671</width>
-    <height>498</height>
+    <width>943</width>
+    <height>575</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,9 +21,16 @@
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <widget class="QWidget" name="widget_8" native="true">
-      <layout class="QHBoxLayout" name="horizontalLayout">
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
        <item>
         <widget class="QPlainTextEdit" name="recvData">
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPlainTextEdit" name="recvData_2">
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -140,6 +147,11 @@
              <height>20</height>
             </size>
            </property>
+           <item>
+            <property name="text">
+             <string>115200</string>
+            </property>
+           </item>
            <item>
             <property name="text">
              <string>38400</string>
@@ -289,8 +301,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>671</width>
-     <height>23</height>
+     <width>943</width>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuasdfasdf">
